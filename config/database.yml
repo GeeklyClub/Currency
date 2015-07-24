@@ -16,4 +16,7 @@ test:
 
 production:
   <<: *default
-  database: currency_production
+  host: ec2-107-21-125-143.compute-1.amazonaws.com
+  database: demssq9ghg287a
+  user: ykqwlxtzvsqwlt
+  password: jwM_jVmH-LcDvpiGi9g5KYP-03
