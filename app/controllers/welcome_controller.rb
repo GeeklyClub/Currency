@@ -14,13 +14,14 @@ class WelcomeController < ApplicationController
     else
       from = from.nil? ? "Thai Baht" : from
 
-      @from = data.select { |data| data[:currency] == from }[0][:currency]
-
+      data.each do |data|
+        @from = data[:"23/07/2015"].to_f if data[:currency] == from
+      end
 
       # raise @from.inspect
       @exchange = []
       data.each do |d|
-        @exchange << { currency: d[:currency], value: @from.to_f / d[:"23/07/2015"].to_f }
+        @exchange << { currency: d[:currency], value: @from / d[:"23/07/2015"].to_f }
       end
     end
   end
