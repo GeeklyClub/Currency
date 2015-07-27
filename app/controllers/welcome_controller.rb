@@ -12,6 +12,7 @@ class WelcomeController < ApplicationController
   end
 
   def iso_code
+    # ref http://www.oanda.com/help/currency-iso-code-country#U
     %w(EUR JPY GBP USD DZD AUD BHD BWP BRL BND CAD CLP CNY COP CZK DKK HUF ISK INR IDR IRR ILS KZT KRW KWD LYD MYR MUR MXN NPR NZD NOK OMR PKR PEN PHP PLN QAR RUB SAR SGD ZAR LKR SEK CHF THB TTD TND AED ARS VEF)
   end
 end
