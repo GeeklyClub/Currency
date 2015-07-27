@@ -1,1 +1,1 @@
-json.currency @exchange
+json.exchange @exchange

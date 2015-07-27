@@ -34,13 +34,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'puma'
 gem 'smarter_csv'
-gem 'excel2csv'
 
 gem 'resque'           # background jobs
 gem 'resque-web', require: 'resque_web'
 gem 'resque-scheduler'  # Job scheduling
 # gem 'resque-retry'                # Retrying failed jobs
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

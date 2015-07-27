@@ -1,28 +1,12 @@
 class WelcomeController < ApplicationController
 
   def index
-    data = SmarterCSV.process('public/rms_five.csv')
+    data = CSV.read(Rails.root.join("public/rms.xls"), { :col_sep => "\t" })
+    from = data[60..110].select { |data| data[0] == params[:from] }[0][2]
 
-    from  = params[:from]
-    to    = params[:to]
-
-    unless from.nil? or to.nil?
-      # date = Date.yesterday.strftime("%d/%m//%Y")
-      @from = data.select { |data| data[:currency] == from }[0][:"23/07/2015"]
-      @to   = data.select { |data| data[:currency] == to }[0][:"23/07/2015"]
-      @exchange = @from / @to
-    else
-      from = from.nil? ? "Thai Baht" : from
-
-      data.each do |data|
-        @from = data[:"23/07/2015"].to_f if data[:currency] == from
-      end
-
-      # raise @from.inspect
-      @exchange = []
-      data.each do |d|
-        @exchange << { currency: d[:currency], value: @from / d[:"23/07/2015"].to_f }
-      end
+    @exchange = []
+    data[60..110].each do |d|
+      @exchange << { currency: d[0], value: d[3].to_f / from.to_f }
     end
   end
 end
