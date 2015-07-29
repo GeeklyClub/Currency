@@ -1,31 +1,34 @@
 class WelcomeController < ApplicationController
 
   def index
-    data = CSV.read(Rails.root.join("public/rms.xls"), { :col_sep => "\t" })
+    datas = CSV.read(Rails.root.join("public/rms.xls"), { :col_sep => "\t" })
 
     loop_start = 0
     loop_end = 0
 
-    data.each_with_index do |x, i|
-      case x.first
+    datas.each_with_index do |data, index|
+      case data.first
       when /Currency/
-        loop_start = i + 1
+        loop_start = index + 1
       when /Bolivar Fuerte/
-        loop_end = i
+        loop_end = index
       end
     end
-    data = data.values_at(loop_start..loop_end)
-    data.each_with_index { |d, i| d.push(iso_code[i]) }
+
+    datas = data.values_at(loop_start..loop_end)
+    datas.each_with_index { |data, index| data.push(iso_code[index]) }
 
     from = params[:from] || "THB"
-    from = data.select { |data| data.last == from }
+    from = data.select { |data| data.last == from.upcase }
+    from = from.first.third || from.first.fourth
 
     @exchange = []
-    data.each_with_index do |d, index|
+    datas.each_with_index do |data, index|
+      to = data.third || data.fourth
       @exchange << {
-        currency: d.first,
-        iso_code: d.last,
-        value: d.third.to_f / from.first.third.to_f
+        currency: data.first,
+        iso_code: data.last,
+        value: to.to_f / from.to_f
       }
     end
   end
