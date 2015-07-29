@@ -15,11 +15,12 @@ class WelcomeController < ApplicationController
       end
     end
 
-    datas = data.values_at(loop_start..loop_end)
+    datas = datas.values_at(loop_start..loop_end)
+    datas.push(["Vietnamese dong", nil, 1 / 0.00003278, "VND"])
     datas.each_with_index { |data, index| data.push(iso_code[index]) }
 
     from = params[:from] || "THB"
-    from = data.select { |data| data.last == from.upcase }
+    from = datas.select { |data| data.last == from.upcase }
     from = from.first.third || from.first.fourth
 
     @exchange = []
@@ -35,6 +36,6 @@ class WelcomeController < ApplicationController
 
   def iso_code
     # ref http://www.oanda.com/help/currency-iso-code-country#U
-    %w(EUR JPY GBP USD DZD AUD BHD BWP BRL BND CAD CLP CNY COP CZK DKK HUF ISK INR IDR IRR ILS KZT KRW KWD LYD MYR MUR MXN NPR NZD NOK OMR PKR PEN PHP PLN QAR RUB SAR SGD ZAR LKR SEK CHF THB TTD TND AED ARS VEF)
+    %w(EUR JPY GBP USD DZD AUD BHD BWP BRL BND CAD CLP CNY COP CZK DKK HUF ISK INR IDR IRR ILS KZT KRW KWD LYD MYR MUR MXN NPR NZD NOK OMR PKR PEN PHP PLN QAR RUB SAR SGD ZAR LKR SEK CHF THB TTD TND AED ARS VEF VND)
   end
 end
