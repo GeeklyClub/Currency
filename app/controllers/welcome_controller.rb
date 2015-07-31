@@ -17,8 +17,9 @@ class WelcomeController < ApplicationController
 
     datas = datas.values_at(loop_start..loop_end)
     datas.push(["Vietnamese dong", nil, 1 / 0.00003278, "VND"])
-    datas.each_with_index { |data, index| data.push(iso_code[index]) }
+    datas.each_with_index { |data| data.push(iso_code[data.first.to_s.split.join.downcase]) }
 
+    datas.each { |x| p x.first.split.join.downcase }
     from = params[:from] || "THB"
     from = datas.select { |data| data.last == from.upcase }
     from = from.first.third || from.first.fourth
@@ -36,6 +37,59 @@ class WelcomeController < ApplicationController
 
   def iso_code
     # ref http://www.oanda.com/help/currency-iso-code-country#U
-    %w(EUR JPY GBP USD DZD AUD BHD BWP BRL BND CAD CLP CNY COP CZK DKK HUF ISK INR IDR IRR ILS KZT KRW KWD LYD MYR MUR MXN NPR NZD NOK OMR PKR PEN PHP PLN QAR RUB SAR SGD ZAR LKR SEK CHF THB TTD TND AED ARS VEF VND)
+    {
+      "euro" =>                     "EUR",
+      "japaneseyen" =>              "JPY",
+      "u.k.poundsterling" =>        "GBP",
+      "u.s.dollar" =>               "USD",
+      "algeriandinar" =>            "DZD",
+      "australiandollar" =>         "AUD",
+      "bahraindinar" =>             "BHD",
+      "botswanapula" =>             "BWP",
+      "brazilianreal" =>            "BRL",
+      "bruneidollar" =>             "BND",
+      "canadiandollar" =>           "CAD",
+      "chileanpeso" =>              "CLP",
+      "chineseyuan" =>              "CNY",
+      "colombianpeso" =>            "COP",
+      "czechkoruna" =>              "CZK",
+      "danishkrone" =>              "DKK",
+      "hungarianforint" =>          "HUF",
+      "icelandickrona" =>           "ISK",
+      "indianrupee" =>              "INR",
+      "indonesianrupiah" =>         "IDR",
+      "iranianrial" =>              "IRR",
+      "israelinewsheqel" =>         "ILS",
+      "kazakhstanitenge" =>         "KZT",
+      "koreanwon" =>                "KRW",
+      "kuwaitidinar" =>             "KWD",
+      "libyandinar" =>              "LYD",
+      "malaysianringgit" =>         "MYR",
+      "mauritianrupee" =>           "MUR",
+      "mexicanpeso" =>              "MXN",
+      "nepaleserupee" =>            "NPR",
+      "newzealanddollar" =>         "NZD",
+      "norwegiankrone" =>           "NOK",
+      "rialomani" =>                "OMR",
+      "pakistanirupee" =>           "PKR",
+      "nuevosol" =>                 "PEN",
+      "philippinepeso" =>           "PHP",
+      "polishzloty" =>              "PLN",
+      "qatarriyal" =>               "QAR",
+      "russianruble" =>             "RUB",
+      "saudiarabianriyal" =>        "SAR",
+      "singaporedollar" =>          "SGD",
+      "southafricanrand" =>         "ZAR",
+      "srilankarupee" =>            "LKR",
+      "swedishkrona" =>             "SEK",
+      "swissfranc" =>               "CHF",
+      "thaibaht" =>                 "THB",
+      "trinidadandtobagodollar" =>  "TTD",
+      "tunisiandinar" =>            "TND",
+      "u.a.e.dirham" =>             "AED",
+      "pesouruguayo" =>             "ARS",
+      "bolivarfuerte" =>            "VEF",
+      "vietnamesedong" =>           "VND"
+    }
   end
 end
