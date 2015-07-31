@@ -10,8 +10,8 @@ class WelcomeController < ApplicationController
       case data.first
       when /Currency/
         loop_start = index + 1
-      when /Bolivar Fuerte/
-        loop_end = index
+      when /\(1\) Exchange rates are published daily except on IMF holidays or/
+        loop_end = index - 3
       end
     end
 
@@ -19,7 +19,6 @@ class WelcomeController < ApplicationController
     datas.push(["Vietnamese dong", nil, 1 / 0.00003278, "VND"])
     datas.each_with_index { |data| data.push(iso_code[data.first.to_s.split.join.downcase]) }
 
-    datas.each { |x| p x.first.split.join.downcase }
     from = params[:from] || "THB"
     from = datas.select { |data| data.last == from.upcase }
     from = from.first.third || from.first.fourth
