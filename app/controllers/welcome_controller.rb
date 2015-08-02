@@ -21,6 +21,7 @@ class WelcomeController < ApplicationController
 
     from = params[:from] || "THB"
     from = datas.select { |data| data.last == from.upcase }
+    return if from.empty?
     from = from.first.third || from.first.fourth
 
     @exchange = []
