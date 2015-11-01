@@ -30,7 +30,7 @@ class WelcomeController < ApplicationController
       @exchange << {
         currency: data.first,
         iso_code: data.last,
-        value: to.to_f / from.to_f
+        value: to.to_s.gsub(/[^\d^\.]/, '').to_f / from.to_s.gsub(/[^\d^\.]/, '').to_f,
       }
     end
   end
