@@ -1,3 +1,3 @@
 # Currency API
 
-Demo here: https://afternoon-ravine-13328.herokuapp.com/
+Demo here: https://currency-softbot.herokuapp.com/
