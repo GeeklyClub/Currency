@@ -80,6 +80,7 @@ GEM
     et-orbi (1.0.4)
       tzinfo
     execjs (2.7.0)
+    ffi (1.9.18)
     font-awesome-sass (4.7.0)
       sass (>= 3.2)
     foreman (0.84.0)
@@ -103,6 +104,10 @@ GEM
       sprockets (> 2, < 4)
       tilt
     libv8 (3.16.14.19)
+    listen (3.1.5)
+      rb-fsevent (~> 0.9, >= 0.9.4)
+      rb-inotify (~> 0.9, >= 0.9.7)
+      ruby_dep (~> 1.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.6)
@@ -138,6 +143,9 @@ GEM
     rails_serve_static_assets (0.0.5)
     rails_stdout_logging (0.0.5)
     rake (12.0.0)
+    rb-fsevent (0.9.8)
+    rb-inotify (0.9.10)
+      ffi (>= 0.5.0, < 2)
     rdoc (4.3.0)
     redis (3.3.3)
     redis-namespace (1.5.3)
@@ -161,6 +169,7 @@ GEM
       resque
       sass-rails
       twitter-bootstrap-rails
+    ruby_dep (1.5.0)
     rufus-scheduler (3.4.2)
       et-orbi (~> 1.0)
     sass (3.4.24)
@@ -226,6 +235,7 @@ DEPENDENCIES
   foreman
   jbuilder (~> 2.0)
   jquery-rails
+  listen
   newrelic_rpm
   pg
   puma
