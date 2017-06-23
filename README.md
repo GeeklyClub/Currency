@@ -1,3 +1,3 @@
 # Currency API
 
-Demo here: https://currency-softbot.herokuapp.com/
+Demo here: https://softbot-currency.herokuapp.com/
