@@ -1,0 +1,43 @@
+
+<%= form_tag(exchange_path, method: 'GET', class: 'row') do %>
+  <div class="form-group col-sm-6">
+    <label for="from">FROM:</label>
+    <select class="form-control" id="from" name="from">
+      <% @selection.each do |selection| %>
+        <option value="<%= selection[1] %>">
+          <%= selection[0].capitalize %> (<%= selection[1] %>)
+        </option>
+      <% end %>
+    </select>
+    <small id="emailHelp" class="form-text text-muted">Currency base you want to compare</small>
+  </div>
+
+  <div class="form-group col-sm-6">
+    <label for="to">TO:</label>
+    <select class="form-control" id="to" name="to">
+      <% @selection.each do |selection| %>
+        <option value="<%= selection[1] %>">
+          <%= selection[0].capitalize %> (<%= selection[1] %>)
+        </option>
+      <% end %>
+    </select>
+    <!--
+      <small id="emailHelp" class="form-text text-muted">Currency base you want to compare</small>
+    -->
+  </div>
+
+  <div class="col-sm-12 text-right">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Result: </h2>
+    <pre>
+      <code>
+        <%= JSON.pretty_generate(@exchange) if @exchange.present? %>
+      </code>
+    </pre>
+  </div>
+</div>

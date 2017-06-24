@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'welcome#index', defaults: { format: :json }
+  root 'welcome#index'
+  get '/exchange', to: 'welcome#exchange'
+  get '/currency_iso_code', to: 'welcome#currency_iso_code', format: :json
 end
