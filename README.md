@@ -1,3 +1,3 @@
 # Currency API
 
-Demo here: https://softbot-currency.herokuapp.com/
+Demo here: https://geekly-currency.herokuapp.com/
