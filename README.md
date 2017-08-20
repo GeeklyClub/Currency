@@ -1,3 +1,3 @@
 # Currency API
 
-Demo here: https://geekly-currency.herokuapp.com/
+Demo here: https://ah-currency.herokuapp.com/
