@@ -1,2 +1,2 @@
-# exchange
+# Exchange
 Exchange Dashboard &amp; API
